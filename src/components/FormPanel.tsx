@@ -1,0 +1,319 @@
+import type { FC, ChangeEvent } from 'react';
+import type { ContractFormData, TransferMethod } from '../types/contract';
+
+interface FormPanelProps {
+  data: ContractFormData;
+  onChange: <K extends keyof ContractFormData>(
+    key: K,
+    value: ContractFormData[K]
+  ) => void;
+  onReset: () => void;
+  onPrint: () => void;
+}
+
+export const FormPanel: FC<FormPanelProps> = ({
+  data,
+  onChange,
+  onReset,
+  onPrint,
+}) => {
+  const handleInput =
+    <K extends keyof ContractFormData>(key: K) =>
+    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      onChange(key, e.target.value as ContractFormData[K]);
+    };
+
+  return (
+    <aside className="form-panel">
+      <div className="form-header">
+        <div className="brand">
+          <div className="brand-mark">AA</div>
+          <div className="brand-text">Agile Assets</div>
+        </div>
+        <h1>ระบบจัดทำเอกสารขอเบิกใช้สินเชื่อ</h1>
+        <p>เอกสารแนบท้ายหมายเลข 6 และ 7</p>
+      </div>
+
+      <div className="form-body">
+        {/* Section 1: ข้อมูลทั่วไป */}
+        <section className="section">
+          <div className="section-title">
+            <span className="num">1</span> ข้อมูลทั่วไป
+          </div>
+          <div className="field-row">
+            <div className="field">
+              <label>ครั้งที่</label>
+              <input
+                type="text"
+                value={data.drawCount}
+                onChange={handleInput('drawCount')}
+              />
+            </div>
+            <div className="field">
+              <label>ใบที่</label>
+              <input
+                type="text"
+                value={data.paperNo}
+                onChange={handleInput('paperNo')}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label>วันที่ทำเอกสาร</label>
+            <input
+              type="text"
+              value={data.docDate}
+              onChange={handleInput('docDate')}
+            />
+          </div>
+          <div className="field">
+            <label>สัญญาเลขที่</label>
+            <input
+              type="text"
+              value={data.contractNo}
+              onChange={handleInput('contractNo')}
+            />
+          </div>
+          <div className="field">
+            <label>ชื่อสัญญา (ในวงเล็บ)</label>
+            <input
+              type="text"
+              value={data.contractAlias}
+              onChange={handleInput('contractAlias')}
+            />
+          </div>
+        </section>
+
+        {/* Section 2: คู่สัญญา */}
+        <section className="section">
+          <div className="section-title">
+            <span className="num">2</span> คู่สัญญา
+          </div>
+          <div className="field">
+            <label>ผู้ให้สินเชื่อฝ่ายที่ 1</label>
+            <input
+              type="text"
+              value={data.lender1}
+              onChange={handleInput('lender1')}
+            />
+          </div>
+          <div className="field">
+            <label>ผู้ให้สินเชื่อฝ่ายที่ 2</label>
+            <input
+              type="text"
+              value={data.lender2}
+              onChange={handleInput('lender2')}
+            />
+          </div>
+          <div className="field">
+            <label>ผู้ขอเบิกสินเชื่อ (บริษัท)</label>
+            <input
+              type="text"
+              value={data.borrowerName}
+              onChange={handleInput('borrowerName')}
+            />
+          </div>
+        </section>
+
+        {/* Section 3: รายละเอียดเงินกู้ */}
+        <section className="section">
+          <div className="section-title">
+            <span className="num">3</span> รายละเอียดการเบิกเงิน
+          </div>
+          <div className="field">
+            <label>(ก) วันที่เบิกใช้สินเชื่อ</label>
+            <input
+              type="text"
+              value={data.drawDate}
+              onChange={handleInput('drawDate')}
+            />
+          </div>
+          <div className="field">
+            <label>(ข) จำนวนเงิน (บาท ไม่รวม VAT)</label>
+            <input
+              type="text"
+              value={data.amount}
+              onChange={handleInput('amount')}
+            />
+          </div>
+          <div className="field">
+            <label>(ค) ค่าธรรมเนียม 0.5% (บาท)</label>
+            <input
+              type="text"
+              value={data.fee}
+              onChange={handleInput('fee')}
+            />
+          </div>
+          <div className="field">
+            <label>(ง) วัตถุประสงค์การใช้สินเชื่อ</label>
+            <textarea
+              value={data.purpose}
+              onChange={handleInput('purpose')}
+            />
+          </div>
+        </section>
+
+        {/* Section 4: วิธีโอนเงิน */}
+        <section className="section">
+          <div className="section-title">
+            <span className="num">4</span> (จ) วิธีโอนเงิน
+          </div>
+          <div className="field">
+            <label>วิธีการ</label>
+            <select
+              value={data.transferMethod}
+              onChange={(e) =>
+                onChange('transferMethod', e.target.value as TransferMethod)
+              }
+            >
+              <option value="cashier">แคชเชียร์เช็ค (Cashier Cheque)</option>
+              <option value="company-cheque">เช็คนามสั่งจ่ายล่วงหน้า</option>
+              <option value="transfer">โอนเงินไปที่บัญชี</option>
+              <option value="other">วิธีการอื่น ๆ</option>
+            </select>
+          </div>
+          <div className="field">
+            <label>ชื่อธนาคาร</label>
+            <input
+              type="text"
+              value={data.transferBank}
+              onChange={handleInput('transferBank')}
+            />
+          </div>
+          <div className="field-row">
+            <div className="field">
+              <label>เลขที่บัญชี (ถ้าโอน)</label>
+              <input
+                type="text"
+                value={data.transferAccount}
+                onChange={handleInput('transferAccount')}
+              />
+            </div>
+            <div className="field">
+              <label>ชื่อบัญชี / ผู้รับสั่งจ่าย</label>
+              <input
+                type="text"
+                value={data.transferAccountName}
+                onChange={handleInput('transferAccountName')}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label>ระบุวิธีอื่น (ถ้าเลือก "อื่น ๆ")</label>
+            <input
+              type="text"
+              value={data.transferOther}
+              onChange={handleInput('transferOther')}
+            />
+          </div>
+        </section>
+
+        {/* Section 5: เงื่อนไขการชำระ */}
+        <section className="section">
+          <div className="section-title">
+            <span className="num">5</span> เงื่อนไขการชำระ
+          </div>
+          <div className="field">
+            <label>(ฉ) อัตราดอกเบี้ย ร้อยละ ___ ต่อเดือน</label>
+            <input
+              type="text"
+              value={data.interestRate}
+              onChange={handleInput('interestRate')}
+            />
+          </div>
+          <div className="field">
+            <label>(ช) ระยะเวลาชำระดอกเบี้ย</label>
+            <input
+              type="text"
+              value={data.interestPeriod}
+              onChange={handleInput('interestPeriod')}
+            />
+          </div>
+          <div className="field">
+            <label>(ซ) วันที่ชำระคืนเงินต้น</label>
+            <input
+              type="text"
+              value={data.repayDate}
+              onChange={handleInput('repayDate')}
+            />
+          </div>
+          <div className="field">
+            <label>(ฌ) เอกสารระหว่างผู้ขอเบิกและบริษัท</label>
+            <textarea
+              value={data.docDetail}
+              onChange={handleInput('docDetail')}
+            />
+          </div>
+        </section>
+
+        {/* Section 6: ผู้ลงนาม */}
+        <section className="section">
+          <div className="section-title">
+            <span className="num">6</span> ผู้ลงนาม
+          </div>
+          <div className="field">
+            <label>ชื่อ-สกุล ผู้ลงนาม</label>
+            <input
+              type="text"
+              value={data.signerName}
+              onChange={handleInput('signerName')}
+            />
+          </div>
+          <div className="field">
+            <label>ตำแหน่ง</label>
+            <input
+              type="text"
+              value={data.signerRole}
+              onChange={handleInput('signerRole')}
+            />
+          </div>
+        </section>
+
+        {/* Section 7: เอกสารหมายเลข 7 */}
+        <section className="section">
+          <div className="section-title">
+            <span className="num">7</span> เอกสารแนบท้ายหมายเลข 7
+          </div>
+          <div className="field">
+            <label>วันที่รับสินเชื่อ</label>
+            <input
+              type="text"
+              value={data.receiveDate}
+              onChange={handleInput('receiveDate')}
+            />
+          </div>
+          <div className="field">
+            <label>จำนวนเงินที่รับ (บาท)</label>
+            <input
+              type="text"
+              value={data.receiveAmount}
+              onChange={handleInput('receiveAmount')}
+            />
+          </div>
+          <div className="field">
+            <label>อ้างถึงเอกสารขอเบิกใช้สินเชื่อวันที่</label>
+            <input
+              type="text"
+              value={data.refDrawDate}
+              onChange={handleInput('refDrawDate')}
+            />
+          </div>
+        </section>
+      </div>
+
+      <div className="action-bar">
+        <button
+          className="btn btn-secondary"
+          onClick={() => {
+            if (window.confirm('ล้างข้อมูลทั้งหมดและคืนค่าเริ่มต้น?')) onReset();
+          }}
+        >
+          ↻ รีเซ็ต
+        </button>
+        <button className="btn btn-primary" onClick={onPrint}>
+          ⎙ พิมพ์เอกสาร
+        </button>
+      </div>
+    </aside>
+  );
+};

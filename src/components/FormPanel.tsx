@@ -1,5 +1,6 @@
 import type { FC, ChangeEvent } from 'react';
 import type { ContractFormData, TransferMethod } from '../types/contract';
+import logo from '../assets/Logo_Agile Assets_CMYK.png';
 
 interface FormPanelProps {
   data: ContractFormData;
@@ -27,7 +28,9 @@ export const FormPanel: FC<FormPanelProps> = ({
     <aside className="form-panel">
       <div className="form-header">
         <div className="brand">
-          <div className="brand-mark">AA</div>
+          <div className="brand-mark">
+            <img src={logo} alt="Logo" />
+          </div>
           <div className="brand-text">Agile Assets</div>
         </div>
         <h1>ระบบจัดทำเอกสารขอเบิกใช้สินเชื่อ</h1>

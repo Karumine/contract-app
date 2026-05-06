@@ -28,7 +28,7 @@ export const Page2: FC<Page2Props> = ({ data }) => (
         </div>
         <div className="sig-right">
           <div className="closing">ขอแสดงความนับถือ</div>
-          <div className="company-line">{data.borrowerName}</div>
+          <div className="company-line highlight-ref">{data.borrowerName}</div>
           <div className="sig-line-dotted" />
           <div className="sig-detail">
             <div className="sig-detail-label">ชื่อ:</div>

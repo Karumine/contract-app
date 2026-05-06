@@ -54,23 +54,23 @@ export const Page1: FC<PageProps> = ({ data }) => {
           <div className="label-col">เรื่อง</div>
           <div className="content-col">
             การเบิกสินเชื่อตามสัญญาให้สินเชื่อหมุนเวียน แบบมีเงื่อนไข สัญญาเลขที่{' '}
-            <span>{data.contractNo}</span> (&ldquo;<span>{data.contractAlias}</span>&rdquo;)
+            <span className="highlight-ref">{data.contractNo}</span> (&ldquo;<span className="highlight-ref">{data.contractAlias}</span>&rdquo;)
           </div>
         </div>
 
         <div className="subject-block">
           <div className="label-col">เรียน</div>
           <div className="content-col">
-            <strong>{data.lender1}</strong> ในฐานะผู้ให้สินเชื่อฝ่ายที่ 1 และ
+            <strong className="highlight-ref">{data.lender1}</strong> ในฐานะผู้ให้สินเชื่อฝ่ายที่ 1 และ
             <br />
-            <strong>{data.lender2}</strong> ในฐานะผู้ให้สินเชื่อฝ่ายที่ 2
+            <strong className="highlight-ref">{data.lender2}</strong> ในฐานะผู้ให้สินเชื่อฝ่ายที่ 2
           </div>
         </div>
 
         <div className="numbered-para">
           <div className="num-col">1.</div>
           <div>
-            ข้าพเจ้า <span>{data.borrowerName}</span> ขอถึงสัญญาให้สินเชื่อ
+            ข้าพเจ้า <span className="highlight-ref">{data.borrowerName}</span> ขอถึงสัญญาให้สินเชื่อ
             และให้คำจำกัดความต่าง ๆ ที่ใช้ในสัญญาให้สินเชื่อ
             ให้มีความหมายเช่นเดียวกับบรรดาที่ใช้ในคำขอเบิกใช้สินเชื่อนี้
           </div>
@@ -210,7 +210,7 @@ export const Page1: FC<PageProps> = ({ data }) => {
           </div>
           <div className="sig-right">
             <div className="closing">ขอแสดงความนับถือ</div>
-            <div className="company-line">{data.borrowerName}</div>
+            <div className="company-line highlight-ref">{data.borrowerName}</div>
             <div className="sig-line-dotted" />
             <div className="sig-detail">
               <div className="sig-detail-label">ชื่อ:</div>

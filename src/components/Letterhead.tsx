@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import logo from '../assets/Logo_Agile Assets_CMYK.png';
 
 export const LetterheadTop: FC = () => (
   <div className="letterhead-top">
@@ -29,7 +30,7 @@ export const LetterheadTop: FC = () => (
     <div className="letterhead-content">
       <div className="logo-block">
         <div className="logo-mark">
-          <span>AA</span>
+          <img src={logo} alt="Logo" />
         </div>
         <div className="logo-text">
           <div className="name">AGILE ASSETS</div>

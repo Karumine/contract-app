@@ -51,12 +51,13 @@ export const LetterheadTop: FC = () => (
           <span>www.agileassets.co.th</span>
           <span className="contact-icon">🌐</span>
         </div>
-        <div className="address-block">
-          20 Moo1 Sukhumvit Road
-          <br />
-          Bangmuangmai, Muang
-          <br />
-          Samut Prakan 10270 📍
+        <div className="contact-row" style={{ alignItems: 'flex-start' }}>
+          <div className="address-block">
+            20 Moo1 Sukhumvit Road<br />
+            Bangmuangmai, Muang<br />
+            Samut Prakan 10270
+          </div>
+          <span className="contact-icon" style={{ marginTop: '2px' }}>📍</span>
         </div>
       </div>
     </div>

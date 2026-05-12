@@ -79,9 +79,9 @@ export const Page1: FC<PageProps> = ({ data }) => {
         <div className="numbered-para">
           <div className="num-col">1.</div>
           <div>
-            ข้าพเจ้า <span className="highlight-ref">{data.borrowerName}</span> ขอถึงสัญญาให้สินเชื่อ
+            ข้าพเจ้า <span className="highlight-ref">{data.borrowerName}</span> ขออ้างถึงสัญญาให้สินเชื่อ
             และให้คำจำกัดความต่าง ๆ ที่ใช้ในสัญญาให้สินเชื่อ
-            ให้มีความหมายเช่นเดียวกับบรรดาที่ใช้ในคำขอเบิกใช้สินเชื่อนี้
+            ให้มีความหมายเช่นเดียวกันกับบรรดาที่ใช้ในคำขอเบิกใช้สินเชื่อนี้
           </div>
         </div>
 
@@ -137,7 +137,7 @@ export const Page1: FC<PageProps> = ({ data }) => {
                 </CheckboxOption>
 
                 <CheckboxOption active={isMethod('company-cheque')}>
-                  เช็คนามสั่งจ่ายล่วงหน้า: <strong>ธนาคาร</strong>{' '}
+                  เช็คธนาคารสั่งจ่ายล่วงหน้า: <strong>ธนาคาร</strong>{' '}
                   <FillLine size="medium">
                     {valueIfMethod('company-cheque', data.transferBank)}
                   </FillLine>{' '}
@@ -186,8 +186,8 @@ export const Page1: FC<PageProps> = ({ data }) => {
             <div className="sub-item">
               <div className="key">(ซ)</div>
               <div className="val">
-              ระยะเวลาชำระคืนเงินต้น: วันที่ <FillLine size="long">{formatThaiDate(data.repayDate)}</FillLine>
-            </div>
+                ระยะเวลาชำระคืนเงินต้น: วันที่ <FillLine size="long">{formatThaiDate(data.repayDate)}</FillLine>
+              </div>
             </div>
 
             <div className="sub-item">
@@ -199,9 +199,8 @@ export const Page1: FC<PageProps> = ({ data }) => {
           </div>
         </div>
 
-        <p className="confirmation-text">
-          โดยให้ถือว่าข้าพเจ้าได้รับสินเชื่อโดยชอบด้วยกฎหมายแล้วทันทีเมื่อเป็นไปตามเงื่อนไขที่กำหนดในข้อ
-          3.4 (ข) (1) ของสัญญาให้สินเชื่อ
+        <p className="pt-2">
+          โดยให้ถือว่าข้าพเจ้าได้รับสินเชื่อโดยชอบด้วยกฎหมายแล้วทันที เมื่อเป็นไปตามเงื่อนไขบังคับก่อนการเบิกใช้ของสัญญาให้สินเชื่อ
         </p>
 
         <div className="numbered-para">

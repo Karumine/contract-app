@@ -40,12 +40,13 @@ export interface ContractFormData {
   receiveDate: string;
   receiveAmount: string;
   refDrawDate: string;
+  receiveLender: '1' | '2' | 'both';
 }
 
 export const initialFormData: ContractFormData = {
   drawCount: '1',
   paperNo: '1/1',
-  docDate: '30 เมษายน 2569',
+  docDate: '2026-04-30',
   contractNo: 'AGA/17-PL112025',
   contractAlias: 'สัญญาให้สินเชื่อ',
 
@@ -53,7 +54,7 @@ export const initialFormData: ContractFormData = {
   lender2: 'บริษัท ฐิติกร จำกัด (มหาชน)',
   borrowerName: 'บริษัท โปรเทคฟิลด์ จำกัด',
 
-  drawDate: '5 พฤษภาคม 2569',
+  drawDate: '2026-05-05',
   amount: '20,000,000',
   fee: '100,000',
   purpose: 'เพื่อใช้เป็นเงินทุนหมุนเวียนในการดำเนินธุรกิจของบริษัท',
@@ -66,13 +67,14 @@ export const initialFormData: ContractFormData = {
 
   interestRate: '1.25',
   interestPeriod: 'ชำระทั้งจำนวนเมื่อครบกำหนดชำระเงินต้น',
-  repayDate: '1 พฤศจิกายน 2569',
+  repayDate: '2026-11-01',
   docDetail: 'หนังสือรับรองบริษัท บอจ.5 และสำเนาบัตรประชาชนผู้มีอำนาจลงนาม',
 
   signerName: 'นายพรรษา เริงพิทยา',
   signerRole: 'กรรมการผู้มีอำนาจลงนาม',
 
-  receiveDate: '5 พฤษภาคม 2569',
+  receiveDate: '2026-05-05',
   receiveAmount: '20,000,000',
-  refDrawDate: '30 เมษายน 2569',
+  refDrawDate: '2026-04-30',
+  receiveLender: '1',
 };

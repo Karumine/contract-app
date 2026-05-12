@@ -1,6 +1,7 @@
 import type { FC, ChangeEvent } from 'react';
 import type { ContractFormData, TransferMethod } from '../types/contract';
 import logo from '../assets/Logo_Agile Assets_CMYK.png';
+import { CustomDatePicker } from './CustomDatePicker';
 
 interface FormPanelProps {
   data: ContractFormData;
@@ -10,6 +11,8 @@ interface FormPanelProps {
   ) => void;
   onReset: () => void;
   onPrint: () => void;
+  sidebarWidth: number;
+  onFocusSection: (section: string) => void;
 }
 
 export const FormPanel: FC<FormPanelProps> = ({
@@ -17,6 +20,8 @@ export const FormPanel: FC<FormPanelProps> = ({
   onChange,
   onReset,
   onPrint,
+  sidebarWidth,
+  onFocusSection,
 }) => {
   const handleInput =
     <K extends keyof ContractFormData>(key: K) =>
@@ -39,7 +44,7 @@ export const FormPanel: FC<FormPanelProps> = ({
 
       <div className="form-body">
         {/* Section 1: ข้อมูลทั่วไป */}
-        <section className="section">
+        <section className="section" onFocus={() => onFocusSection('section-1')}>
           <div className="section-title">
             <span className="num">1</span> ข้อมูลทั่วไป
           </div>
@@ -61,12 +66,11 @@ export const FormPanel: FC<FormPanelProps> = ({
               />
             </div>
           </div>
-          <div className="field">
-            <label>วันที่ทำเอกสาร</label>
-            <input
-              type="text"
+          <div onFocus={() => onFocusSection('section-1')}>
+            <CustomDatePicker
+              label="วันที่ทำเอกสาร"
               value={data.docDate}
-              onChange={handleInput('docDate')}
+              onChange={(val) => onChange('docDate', val)}
             />
           </div>
           <div className="field">
@@ -88,7 +92,7 @@ export const FormPanel: FC<FormPanelProps> = ({
         </section>
 
         {/* Section 2: คู่สัญญา */}
-        <section className="section">
+        <section className="section" onFocus={() => onFocusSection('section-1')}>
           <div className="section-title">
             <span className="num">2</span> คู่สัญญา
           </div>
@@ -119,16 +123,15 @@ export const FormPanel: FC<FormPanelProps> = ({
         </section>
 
         {/* Section 3: รายละเอียดเงินกู้ */}
-        <section className="section">
+        <section className="section" onFocus={() => onFocusSection('section-2')}>
           <div className="section-title">
             <span className="num">3</span> รายละเอียดการเบิกเงิน
           </div>
-          <div className="field">
-            <label>(ก) วันที่เบิกใช้สินเชื่อ</label>
-            <input
-              type="text"
+          <div onFocus={() => onFocusSection('section-2')}>
+            <CustomDatePicker
+              label="(ก) วันที่เบิกใช้สินเชื่อ"
               value={data.drawDate}
-              onChange={handleInput('drawDate')}
+              onChange={(val) => onChange('drawDate', val)}
             />
           </div>
           <div className="field">
@@ -157,7 +160,7 @@ export const FormPanel: FC<FormPanelProps> = ({
         </section>
 
         {/* Section 4: วิธีโอนเงิน */}
-        <section className="section">
+        <section className="section" onFocus={() => onFocusSection('section-4')}>
           <div className="section-title">
             <span className="num">4</span> (จ) วิธีโอนเงิน
           </div>
@@ -212,7 +215,7 @@ export const FormPanel: FC<FormPanelProps> = ({
         </section>
 
         {/* Section 5: เงื่อนไขการชำระ */}
-        <section className="section">
+        <section className="section" onFocus={() => onFocusSection('section-5')}>
           <div className="section-title">
             <span className="num">5</span> เงื่อนไขการชำระ
           </div>
@@ -232,12 +235,11 @@ export const FormPanel: FC<FormPanelProps> = ({
               onChange={handleInput('interestPeriod')}
             />
           </div>
-          <div className="field">
-            <label>(ซ) วันที่ชำระคืนเงินต้น</label>
-            <input
-              type="text"
+          <div onFocus={() => onFocusSection('section-5')}>
+            <CustomDatePicker
+              label="(ซ) วันที่ชำระคืนเงินต้น"
               value={data.repayDate}
-              onChange={handleInput('repayDate')}
+              onChange={(val) => onChange('repayDate', val)}
             />
           </div>
           <div className="field">
@@ -250,7 +252,7 @@ export const FormPanel: FC<FormPanelProps> = ({
         </section>
 
         {/* Section 6: ผู้ลงนาม */}
-        <section className="section">
+        <section className="section" onFocus={() => onFocusSection('section-6')}>
           <div className="section-title">
             <span className="num">6</span> ผู้ลงนาม
           </div>
@@ -273,16 +275,15 @@ export const FormPanel: FC<FormPanelProps> = ({
         </section>
 
         {/* Section 7: เอกสารหมายเลข 7 */}
-        <section className="section">
+        <section className="section" onFocus={() => onFocusSection('section-7')}>
           <div className="section-title">
             <span className="num">7</span> เอกสารแนบท้ายหมายเลข 7
           </div>
-          <div className="field">
-            <label>วันที่รับสินเชื่อ</label>
-            <input
-              type="text"
+          <div onFocus={() => onFocusSection('section-7')}>
+            <CustomDatePicker
+              label="วันที่รับสินเชื่อ"
               value={data.receiveDate}
-              onChange={handleInput('receiveDate')}
+              onChange={(val) => onChange('receiveDate', val)}
             />
           </div>
           <div className="field">
@@ -293,18 +294,32 @@ export const FormPanel: FC<FormPanelProps> = ({
               onChange={handleInput('receiveAmount')}
             />
           </div>
-          <div className="field">
-            <label>อ้างถึงเอกสารขอเบิกใช้สินเชื่อวันที่</label>
-            <input
-              type="text"
+          <div onFocus={() => onFocusSection('section-7')}>
+            <CustomDatePicker
+              label="อ้างถึงเอกสารขอเบิกใช้สินเชื่อวันที่"
               value={data.refDrawDate}
-              onChange={handleInput('refDrawDate')}
+              onChange={(val) => onChange('refDrawDate', val)}
             />
           </div>
+          {data.lender2 && (
+            <div className="field">
+              <label>ผู้ให้สินเชื่อ (สำหรับหน้า 3)</label>
+              <select
+                value={data.receiveLender}
+                onChange={(e) =>
+                  onChange('receiveLender', e.target.value as '1' | '2' | 'both')
+                }
+              >
+                <option value="1">ผู้ให้สินเชื่อฝ่ายที่ 1 ({data.lender1})</option>
+                <option value="2">ผู้ให้สินเชื่อฝ่ายที่ 2 ({data.lender2})</option>
+                <option value="both">ทั้งคู่ (ฝ่ายที่ 1 / ฝ่ายที่ 2)</option>
+              </select>
+            </div>
+          )}
         </section>
       </div>
 
-      <div className="action-bar">
+      <div className="action-bar" style={{ width: sidebarWidth }}>
         <button
           className="btn btn-secondary"
           onClick={() => {

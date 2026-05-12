@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import type { ContractFormData, TransferMethod } from '../types/contract';
 import { LetterheadTop, LetterheadBottom } from './Letterhead';
+import { formatThaiDate } from '../utils/date';
 
 interface PageProps {
   data: ContractFormData;
@@ -36,8 +37,8 @@ export const Page1: FC<PageProps> = ({ data }) => {
     <div className="page">
       <LetterheadTop />
 
-      <div className="body-content">
-        <div className="doc-title-block">
+      <div className="body-content" id="page1-content">
+        <div className="doc-title-block" id="section-1">
           <div className="doc-label">เอกสารแนบท้ายหมายเลข 6</div>
           <div className="doc-name">
             หนังสือขอเบิกใช้สินเชื่อ ครั้งที่{' '}
@@ -47,7 +48,7 @@ export const Page1: FC<PageProps> = ({ data }) => {
         </div>
 
         <div className="date-line">
-          วันที่ <span className="underline-field">{data.docDate}</span>
+          วันที่ <span className="underline-field">{formatThaiDate(data.docDate)}</span>
         </div>
 
         <div className="subject-block">
@@ -61,9 +62,17 @@ export const Page1: FC<PageProps> = ({ data }) => {
         <div className="subject-block">
           <div className="label-col">เรียน</div>
           <div className="content-col">
-            <strong className="highlight-ref">{data.lender1}</strong> ในฐานะผู้ให้สินเชื่อฝ่ายที่ 1 และ
-            <br />
-            <strong className="highlight-ref">{data.lender2}</strong> ในฐานะผู้ให้สินเชื่อฝ่ายที่ 2
+            {data.lender2 ? (
+              <>
+                <strong className="highlight-ref">{data.lender1}</strong> ในฐานะผู้ให้สินเชื่อฝ่ายที่ 1 และ
+                <br />
+                <strong className="highlight-ref">{data.lender2}</strong> ในฐานะผู้ให้สินเชื่อฝ่ายที่ 2
+              </>
+            ) : (
+              <>
+                <strong className="highlight-ref">{data.lender1}</strong> ในฐานะผู้ให้สินเชื่อ
+              </>
+            )}
           </div>
         </div>
 
@@ -76,7 +85,7 @@ export const Page1: FC<PageProps> = ({ data }) => {
           </div>
         </div>
 
-        <div className="numbered-para">
+        <div className="numbered-para" id="section-2">
           <div className="num-col">2.</div>
           <div>ข้าพเจ้ามีความประสงค์จะเบิกเงินกู้ ดังรายละเอียดต่อไปนี้</div>
         </div>
@@ -85,7 +94,7 @@ export const Page1: FC<PageProps> = ({ data }) => {
           <div className="sub-item">
             <div className="key">(ก)</div>
             <div className="val">
-              วันที่เบิกใช้สินเชื่อ: <FillLine size="long">{data.drawDate}</FillLine>
+              วันที่เบิกใช้สินเชื่อ: <FillLine size="long">{formatThaiDate(data.drawDate)}</FillLine>
             </div>
           </div>
 
@@ -113,7 +122,7 @@ export const Page1: FC<PageProps> = ({ data }) => {
 
           <div className="sub-item">
             <div className="key">(จ)</div>
-            <div className="val transfer-block">
+            <div className="val transfer-block" id="section-4">
               ส่งมอบเงินโดย (เลือกวิธีการวิธีหนึ่ง)
               <div className="transfer-options">
                 <CheckboxOption active={isMethod('cashier')}>
@@ -159,31 +168,33 @@ export const Page1: FC<PageProps> = ({ data }) => {
             </div>
           </div>
 
-          <div className="sub-item">
-            <div className="key">(ฉ)</div>
-            <div className="val">
-              อัตราดอกเบี้ย: ร้อยละ <FillLine size="tiny">{data.interestRate}</FillLine> ต่อเดือน
+          <div id="section-5">
+            <div className="sub-item">
+              <div className="key">(ฉ)</div>
+              <div className="val">
+                อัตราดอกเบี้ย: ร้อยละ <FillLine size="tiny">{data.interestRate}</FillLine> ต่อเดือน
+              </div>
             </div>
-          </div>
 
-          <div className="sub-item">
-            <div className="key">(ช)</div>
-            <div className="val">
-              ระยะเวลาชำระดอกเบี้ย: <FillLine size="long">{data.interestPeriod}</FillLine>
+            <div className="sub-item">
+              <div className="key">(ช)</div>
+              <div className="val">
+                ระยะเวลาชำระดอกเบี้ย: <FillLine size="long">{data.interestPeriod}</FillLine>
+              </div>
             </div>
-          </div>
 
-          <div className="sub-item">
-            <div className="key">(ซ)</div>
-            <div className="val">
-              ระยะเวลาชำระคืนเงินต้น: วันที่ <FillLine size="long">{data.repayDate}</FillLine>
+            <div className="sub-item">
+              <div className="key">(ซ)</div>
+              <div className="val">
+              ระยะเวลาชำระคืนเงินต้น: วันที่ <FillLine size="long">{formatThaiDate(data.repayDate)}</FillLine>
             </div>
-          </div>
+            </div>
 
-          <div className="sub-item">
-            <div className="key">(ฌ)</div>
-            <div className="val multiline">
-              เอกสารที่เกี่ยวข้องกับลูกค้าของผู้กู้ที่ผู้กู้ส่งมอบให้แก่ผู้ให้สินเชื่อ ซึ่งเป็นเงื่อนไขบังคับก่อนการเบิกใช้สินเชื่อในครั้งนี้ ได้แก่เอกสารระหว่างผู้กู้และบริษัท <FillLine size="long">{data.docDetail}</FillLine>
+            <div className="sub-item">
+              <div className="key">(ฌ)</div>
+              <div className="val multiline">
+                เอกสารที่เกี่ยวข้องกับลูกค้าของผู้กู้ที่ผู้กู้ส่งมอบให้แก่ผู้ให้สินเชื่อ ซึ่งเป็นเงื่อนไขบังคับก่อนการเบิกใช้สินเชื่อในครั้งนี้ ได้แก่เอกสารระหว่างผู้กู้และบริษัท <FillLine size="long">{data.docDetail}</FillLine>
+              </div>
             </div>
           </div>
         </div>
@@ -204,7 +215,7 @@ export const Page1: FC<PageProps> = ({ data }) => {
           </div>
         </div>
 
-        <div className="signature-area">
+        <div className="signature-area" id="section-6">
           <div className="sig-left">
             <div className="sig-line-stamp">ประทับตราบริษัท (ถ้ามี)</div>
           </div>

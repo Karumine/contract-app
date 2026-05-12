@@ -55,6 +55,7 @@ export const FormPanel: FC<FormPanelProps> = ({
                 type="text"
                 value={data.drawCount}
                 onChange={handleInput('drawCount')}
+                placeholder="เช่น 1"
               />
             </div>
             <div className="field">
@@ -63,6 +64,7 @@ export const FormPanel: FC<FormPanelProps> = ({
                 type="text"
                 value={data.paperNo}
                 onChange={handleInput('paperNo')}
+                placeholder="เช่น 1/1"
               />
             </div>
           </div>
@@ -79,6 +81,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.contractNo}
               onChange={handleInput('contractNo')}
+              placeholder="เช่น AGA/17-PL112025"
             />
           </div>
           <div className="field">
@@ -87,6 +90,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.contractAlias}
               onChange={handleInput('contractAlias')}
+              placeholder="เช่น สัญญาให้สินเชื่อ"
             />
           </div>
         </section>
@@ -102,6 +106,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.lender1}
               onChange={handleInput('lender1')}
+              placeholder="ชื่อบริษัทผู้ให้สินเชื่อฝ่ายที่ 1"
             />
           </div>
           <div className="field">
@@ -110,6 +115,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.lender2}
               onChange={handleInput('lender2')}
+              placeholder="ชื่อบริษัทผู้ให้สินเชื่อฝ่ายที่ 2 (ถ้ามี)"
             />
           </div>
           <div className="field">
@@ -118,6 +124,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.borrowerName}
               onChange={handleInput('borrowerName')}
+              placeholder="ชื่อบริษัทผู้ขอเบิกสินเชื่อ"
             />
           </div>
         </section>
@@ -140,6 +147,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.amount}
               onChange={handleInput('amount')}
+              placeholder="เช่น 20,000,000"
             />
           </div>
           <div className="field">
@@ -148,6 +156,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.fee}
               onChange={handleInput('fee')}
+              placeholder="ระบุจำนวนเงินค่าธรรมเนียม"
             />
           </div>
           <div className="field">
@@ -155,6 +164,7 @@ export const FormPanel: FC<FormPanelProps> = ({
             <textarea
               value={data.purpose}
               onChange={handleInput('purpose')}
+              placeholder="ระบุวัตถุประสงค์การใช้เงิน"
             />
           </div>
         </section>
@@ -184,6 +194,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.transferBank}
               onChange={handleInput('transferBank')}
+              placeholder="ชื่อธนาคาร"
             />
           </div>
           <div className="field-row">
@@ -193,6 +204,7 @@ export const FormPanel: FC<FormPanelProps> = ({
                 type="text"
                 value={data.transferAccount}
                 onChange={handleInput('transferAccount')}
+                placeholder="ระบุเลขที่บัญชี"
               />
             </div>
             <div className="field">
@@ -201,6 +213,7 @@ export const FormPanel: FC<FormPanelProps> = ({
                 type="text"
                 value={data.transferAccountName}
                 onChange={handleInput('transferAccountName')}
+                placeholder="ชื่อเจ้าของบัญชี / ผู้รับสั่งจ่าย"
               />
             </div>
           </div>
@@ -210,6 +223,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.transferOther}
               onChange={handleInput('transferOther')}
+              placeholder="ระบุวิธีโอนเงินอื่น ๆ"
             />
           </div>
         </section>
@@ -225,6 +239,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.interestRate}
               onChange={handleInput('interestRate')}
+              placeholder="เช่น 1.25"
             />
           </div>
           <div className="field">
@@ -233,6 +248,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.interestPeriod}
               onChange={handleInput('interestPeriod')}
+              placeholder="เช่น ชำระทุกสิ้นเดือน หรือ เมื่อครบกำหนด"
             />
           </div>
           <div onFocus={() => onFocusSection('section-5')}>
@@ -247,6 +263,7 @@ export const FormPanel: FC<FormPanelProps> = ({
             <textarea
               value={data.docDetail}
               onChange={handleInput('docDetail')}
+              placeholder="ระบุรายละเอียดเอกสารแนบ"
             />
           </div>
         </section>
@@ -262,6 +279,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.signerName}
               onChange={handleInput('signerName')}
+              placeholder="ระบุชื่อ-นามสกุล ผู้ลงนาม"
             />
           </div>
           <div className="field">
@@ -270,6 +288,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.signerRole}
               onChange={handleInput('signerRole')}
+              placeholder="เช่น กรรมการผู้มีอำนาจลงนาม"
             />
           </div>
         </section>
@@ -292,6 +311,7 @@ export const FormPanel: FC<FormPanelProps> = ({
               type="text"
               value={data.receiveAmount}
               onChange={handleInput('receiveAmount')}
+              placeholder="เช่น 20,000,000"
             />
           </div>
           <div onFocus={() => onFocusSection('section-7')}>

@@ -142,13 +142,23 @@ export const FormPanel: FC<FormPanelProps> = ({
             />
           </div>
           <div className="field">
-            <label>(ข) จำนวนเงิน (บาท ไม่รวม VAT)</label>
+            <label>(ข) จำนวนเงิน (บาท)</label>
             <input
               type="text"
               value={data.amount}
               onChange={handleInput('amount')}
               placeholder="เช่น 20,000,000"
             />
+          </div>
+          <div className="field checkbox-field">
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={data.hasVat}
+                onChange={(e) => onChange('hasVat', e.target.checked)}
+              />
+              <span>มีภาษีมูลค่าเพิ่ม (VAT)</span>
+            </label>
           </div>
           <div className="field">
             <label>(ค) ค่าธรรมเนียม 0.5% (บาท)</label>

@@ -18,6 +18,7 @@ export interface ContractFormData {
   amount: string;
   fee: string;
   purpose: string;
+  hasVat: boolean;
 
   // วิธีโอนเงิน
   transferMethod: TransferMethod;
@@ -58,6 +59,7 @@ export const initialFormData: ContractFormData = {
   amount: '',
   fee: '',
   purpose: '',
+  hasVat: true,
 
   transferMethod: 'cashier',
   transferBank: '',

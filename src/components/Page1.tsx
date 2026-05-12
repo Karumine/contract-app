@@ -101,7 +101,7 @@ export const Page1: FC<PageProps> = ({ data }) => {
           <div className="sub-item">
             <div className="key">(ข)</div>
             <div className="val">
-              จำนวนเงิน <FillLine size="medium">{data.amount}</FillLine> บาท (ไม่รวมภาษีมูลค่าเพิ่ม)
+              จำนวนเงิน <FillLine size="medium">{data.amount}</FillLine> บาท {data.hasVat && '(รวมภาษีมูลค่าเพิ่ม)'}
             </div>
           </div>
 
